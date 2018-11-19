@@ -20,6 +20,7 @@ int main(){
   initscr();
   noecho();
   curs_set(FALSE);
+  timeout(1000);
 
   while(running){
   clear();
