@@ -7,6 +7,7 @@ bool running = true;
 int pingCount = 0;
 int successCount = 0;
 int failCount = 0;
+int termLenght = 100;
 
 const char testarray[][255] = {
   "127.0.0.1",
@@ -27,14 +28,16 @@ int main(){
   raw();
 
   printw("Persistent Ping Check 2\n");
-  printw("---------------------------------------------------------------------------\n");
   printw("Pings: %d\tSucceeded:%d\tFailed:%d\tInterval:%d\tHosts:%d\n", pingCount, successCount, failCount, interval, sizeof(testarray) / sizeof(testarray[0]));
-  printw("---------------------------------------------------------------------------\n");
+    printSeperator();
+    printSeperator();
 
   for (size_t i = 0; i < sizeof(testarray) / sizeof(testarray[0]); i++){
     pingHost(testarray[i]);
   }
   printw("Press 'q' to quit");
+    printSeperator();
+    printSeperator();
 
   if (getch() == 'q'){
     running = false;
@@ -42,6 +45,13 @@ int main(){
 }
   endwin();
   return 0;
+}
+
+void printSeperator(){
+  for (int i = 0; i < termLenght;i++){
+    printw("-");
+  }  
+  printw("\n");
 }
 
 int getHostIndex(char host[]){
