@@ -26,7 +26,10 @@ int main(){
   clear();
   raw();
 
+  printw("Persistent Ping Check 2\n");
+  printw("---------------------------------------------------------------------------\n");
   printw("Pings: %d\tSucceeded:%d\tFailed:%d\tInterval:%d\tHosts:%d\n", pingCount, successCount, failCount, interval, sizeof(testarray) / sizeof(testarray[0]));
+  printw("---------------------------------------------------------------------------\n");
 
   for (size_t i = 0; i < sizeof(testarray) / sizeof(testarray[0]); i++){
     pingHost(testarray[i]);
