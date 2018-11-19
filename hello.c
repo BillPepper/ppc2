@@ -22,7 +22,7 @@ int main(){
   while(running){
   clear();
   raw();
-  
+
   printw("Count: %d\n", count);
 
   for (size_t i = 0; i < sizeof(testarray) / sizeof(testarray[0]); i++){
@@ -47,11 +47,18 @@ void pingHost(char host[]){
   strcat(cmd, host);
   strcat(cmd, dst);
 
+  start_color();
+  init_pair(1, 2, 7);
+  init_pair(2, 1, 0);
+
   int ret = system(cmd);
   if (ret == 0){
-    init_color(COLOR_RED, 700, 0, 0);
-    printw("%s:\tSuccess, %d\n", host, ret);
+    attron(COLOR_PAIR(1));
+    printw("%s:\tSuccess, %d\t\t\n", host, ret);
+    attroff(COLOR_PAIR(1));
   }else {
+    attron(COLOR_PAIR(2));
     printw("%s:\tError\n", host);
+    attroff(COLOR_PAIR(2));
   }
 }
