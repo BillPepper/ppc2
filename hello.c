@@ -43,14 +43,13 @@ int main(){
 
 void pingHost(char host[]){
   char cmd[255] = "ping -q -c 1 ";
-  char hst[255] = "10.0.7.2";
   char dst[255] = " > /dev/null";
 
   strcat(cmd, host);
   strcat(cmd, dst);
 
   start_color();
-  init_pair(1, 2, 7);
+  init_pair(1, 2, 0);
   init_pair(2, 1, 0);
 
   pingCount++;
