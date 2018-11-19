@@ -15,8 +15,6 @@ const char testarray[][255] = {
   "8.8.8.8"
 };
 
-void pingHost();
-
 int main(){
   initscr();
   noecho();
