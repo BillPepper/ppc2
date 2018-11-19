@@ -21,13 +21,18 @@ int main(){
   curs_set(FALSE);
   timeout(1000 * 10);
 
+  start_color();
+  init_pair(1, 2, 0);
+  init_pair(2, 1, 0);
+  init_pair(3, 4, 0);
+
   while(running){
   clear();
   raw();
 
   printw("Persistent Ping Check 2\n");
-  printw("Pings: %d\tSucceeded:%d\tFailed:%d\tInterval:%d\tHosts:%d\n", pingCount, successCount, failCount, interval, sizeof(testarray) / sizeof(testarray[0]));
     printSeperator();
+    printPingStatistics();
     printSeperator();
 
   for (size_t i = 0; i < sizeof(testarray) / sizeof(testarray[0]); i++){
@@ -40,9 +45,26 @@ int main(){
   if (getch() == 'q'){
     running = false;
   }
-}
   endwin();
   return 0;
+}
+
+void printPingStatistics(){
+  attron(COLOR_PAIR(3));
+  printw("Pings: %d\t", pingCount);
+  attroff(COLOR_PAIR(3));
+
+  attron(COLOR_PAIR(1));
+  printw("Succeeded: %d\t", successCount);
+  attroff(COLOR_PAIR(1));
+
+  attron(COLOR_PAIR(2));
+  printw("Failed: %d\t", failCount);
+  attroff(COLOR_PAIR(2));
+
+  attron(COLOR_PAIR(3));
+  printw("Interval: %d\tHosts: %d\n", interval, sizeof(testarray) / sizeof(testarray[0]));
+  attroff(COLOR_PAIR(3));
 }
 
 void printSeperator(){
@@ -67,10 +89,6 @@ void pingHost(char host[]){
 
   strcat(cmd, host);
   strcat(cmd, dst);
-
-  start_color();
-  init_pair(1, 2, 0);
-  init_pair(2, 1, 0);
 
   pingCount++;
 
