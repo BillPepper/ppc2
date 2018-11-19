@@ -41,6 +41,15 @@ int main(){
   return 0;
 }
 
+int getHostIndex(char host[]){
+  for (size_t i = 0; i < sizeof(testarray) / sizeof(testarray[0]); i++){
+    if (testarray[i] == host){
+      return i;
+    } 
+  }
+  return -1;
+}
+
 void pingHost(char host[]){
   char cmd[255] = "ping -q -c 1 ";
   char dst[255] = " > /dev/null";
@@ -58,12 +67,12 @@ void pingHost(char host[]){
   if (ret == 0){
     successCount++;
     attron(COLOR_PAIR(1));
-    printw("%s:\tSuccess, %d\t\t\n", host, ret);
+    printw("%d\t%s:\tSuccess, %d\t\t\n", getHostIndex(host) +1, host, ret);
     attroff(COLOR_PAIR(1));
   }else {
     failCount++;
     attron(COLOR_PAIR(2));
-    printw("%s:\tError\n", host);
+    printw("%d\t%s:\tError\n", getHostIndex(host) +1, host);
     attroff(COLOR_PAIR(2));
   }
 }
