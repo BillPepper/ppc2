@@ -27,23 +27,27 @@ int main(){
   init_pair(3, 4, 0);
 
   while(running){
-  clear();
-  raw();
+    clear();
+    raw();
 
-  printw("Persistent Ping Check 2\n");
+    printw("Persistent Ping Check 2\n");
     printSeperator();
     printPingStatistics();
     printSeperator();
 
-  for (size_t i = 0; i < sizeof(testarray) / sizeof(testarray[0]); i++){
-    pingHost(testarray[i]);
-  }
-  printw("Press 'q' to quit");
+    for (size_t i = 0; i < sizeof(testarray) / sizeof(testarray[0]); i++){
+      pingHost(testarray[i]);
+    }
+  
     printSeperator();
+    printw("Problem Hosts: -1\n");
+    printw("Deactivated Hosts: -1\n");
     printSeperator();
+    printw("Press 'q' to quit");
 
-  if (getch() == 'q'){
-    running = false;
+    if (getch() == 'q'){
+     running = false;
+    }
   }
   endwin();
   return 0;
