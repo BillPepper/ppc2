@@ -4,7 +4,9 @@
 
 int interval = 120;
 bool running = true;
-int count = 0;
+int pingCount = 0;
+int successCount = 0;
+int failCount = 0;
 
 const char testarray[][255] = {
   "127.0.0.1",
@@ -23,13 +25,12 @@ int main(){
   clear();
   raw();
 
-  printw("Count: %d\n", count);
+  printw("Pings: %d\tSucceeded:%d\tFailed:%d\n", pingCount, successCount, failCount);
 
   for (size_t i = 0; i < sizeof(testarray) / sizeof(testarray[0]); i++){
     pingHost(testarray[i]);
   }
   printw("Press 'q' to quit");
-  count++;
 
   if (getch() == 'q'){
     running = false;
@@ -51,12 +52,16 @@ void pingHost(char host[]){
   init_pair(1, 2, 7);
   init_pair(2, 1, 0);
 
+  pingCount++;
+
   int ret = system(cmd);
   if (ret == 0){
+    successCount++;
     attron(COLOR_PAIR(1));
     printw("%s:\tSuccess, %d\t\t\n", host, ret);
     attroff(COLOR_PAIR(1));
   }else {
+    failCount++;
     attron(COLOR_PAIR(2));
     printw("%s:\tError\n", host);
     attroff(COLOR_PAIR(2));
