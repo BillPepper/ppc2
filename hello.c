@@ -26,7 +26,7 @@ int main(){
   clear();
   raw();
 
-  printw("Pings: %d\tSucceeded:%d\tFailed:%d\n", pingCount, successCount, failCount);
+  printw("Pings: %d\tSucceeded:%d\tFailed:%d\tInterval:%d\tHosts:%d\n", pingCount, successCount, failCount, interval, sizeof(testarray) / sizeof(testarray[0]));
 
   for (size_t i = 0; i < sizeof(testarray) / sizeof(testarray[0]); i++){
     pingHost(testarray[i]);
