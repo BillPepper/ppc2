@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int interval = 120;
+int interval = 10; //seconds
 bool running = true;
 int pingCount = 0;
 int successCount = 0;
@@ -20,7 +20,7 @@ int main(){
   initscr();
   noecho();
   curs_set(FALSE);
-  timeout(1000);
+  timeout(1000 * 10);
 
   while(running){
   clear();
