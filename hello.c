@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int interval = 10; //seconds
 bool running = true;
@@ -13,7 +14,13 @@ const char testarray[][255] = {
   "127.0.0.1",
   "10.0.7.1",
   "8.8.8.8"
+  //,"10.0.7.188"
 };
+
+void printPingStatistics();
+void printSeperator();
+int getHostIndex();
+void pingHost();
 
 int main(){
   initscr();
