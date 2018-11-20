@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "hello.h"
+#include "ppc2.h"
+
 int interval = 10; //seconds
 bool running = true;
 int pingCount = 0;
@@ -17,7 +18,6 @@ const char testarray[][255] = {
   "8.8.8.8"
   //,"10.0.7.188"
 };
-
 
 int main(){
   initscr();
@@ -47,7 +47,7 @@ int main(){
     printw("Problem Hosts: -1\n");
     printw("Deactivated Hosts: -1\n");
     printSeperator();
-    printw("Press 'q' to quit");
+    printw("Press '?' for help or 'q' to quit");
 
     if (getch() == 'q'){
      running = false;

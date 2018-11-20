@@ -1,1 +1,1 @@
-gcc -o hello hello.c -lncurses
+gcc -o ppc2 ppc2.c -lncurses
