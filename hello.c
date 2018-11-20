@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "hello.h"
 int interval = 10; //seconds
 bool running = true;
 int pingCount = 0;
@@ -17,10 +18,6 @@ const char testarray[][255] = {
   //,"10.0.7.188"
 };
 
-void printPingStatistics();
-void printSeperator();
-int getHostIndex();
-void pingHost();
 
 int main(){
   initscr();
